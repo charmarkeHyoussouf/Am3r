@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Phone Diet Bootcamp — Reclaim your time. A phone-locking digital wellbeing app by Am3r Group." />
+  <meta name="description" content="Phone Diet Bootcamp — Walk 100 steps, earn 1 minute. A fitness-first screen time app by Am3r Group." />
   <title>Phone Diet Bootcamp — Am3r Group</title>
   <link rel="stylesheet" href="css/style.css" />
   <style>
@@ -12,6 +12,34 @@
     }
     .app-hero::before {
       background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, rgba(34,197,94,0.05) 50%, transparent 70%);
+    }
+    /* Override phone-showcase for in-flow about-grid context */
+    .phone-showcase {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .phone-frame {
+      width: 240px;
+      height: 504px;
+    }
+    .phone-slides img {
+      object-fit: cover;
+      object-position: 50% 8%;
+    }
+    .phonediet-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      margin: 0 auto 24px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.4);
+      animation: fadeInDown 0.6s ease 0.2s both;
     }
   </style>
 </head>
@@ -27,7 +55,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#products">Products</a></li>
-        <li><a href="linguits.html">Linguits</a></li>
+        <li><a href="linguist.html">Linguist</a></li>
         <li><a href="deliber8.html">Deliber8</a></li>
         <li><a href="phonediet.html" style="color: var(--accent);">Phone Diet</a></li>
         <li><a href="index.html#products" class="nav-cta">All Apps →</a></li>
@@ -38,16 +66,22 @@
   <!-- APP HERO -->
   <section class="app-hero">
     <div class="app-hero-content">
-      <span class="app-hero-icon">🔒</span>
+      <img src="assets/phonediet-logo.png" alt="Phone Diet Bootcamp logo" class="phonediet-logo" />
       <div style="margin-bottom:16px;">
         <span class="badge dev">● In Development</span>
       </div>
       <h1 class="gold-text">Phone Diet<br>Bootcamp</h1>
       <p class="app-hero-tagline">
-        Reclaim your time. Lock the distraction. A bootcamp-style approach to digital wellness.
+        Walk more. Earn more. Every 100 steps unlocks 1 minute of screen time.
       </p>
+      <div class="platform-badges" style="justify-content:center; margin-bottom:20px;">
+        <span class="platform-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.19.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+          Android Only
+        </span>
+      </div>
       <div class="app-hero-badge">
-        <span class="badge">By Am3r Group</span>
+        <span class="badge"><span>By Am<span class="brand-three">3</span>r Group</span></span>
       </div>
     </div>
   </section>
@@ -60,30 +94,30 @@
       <div class="about-grid reveal">
         <div class="about-text">
           <div class="about-label">What is Phone Diet Bootcamp?</div>
-          <h2>Your phone is<br><span class="gold-text">calling the shots.</span></h2>
+          <h2>Your steps<br><span class="gold-text">call the shots.</span></h2>
           <p>
-            Phone Diet Bootcamp is a digital wellbeing app that puts you back in control. Schedule phone-free sessions, track your progress, and build healthier screen habits — one locked session at a time.
+            Fitness first, then freedom. Phone Diet Bootcamp unlocks your phone based on your steps. Walk 100 steps to earn 1 minute of usage—and watch your daily balance grow as you move.
           </p>
           <p>
-            Think of it as a personal trainer for your screen time. The bootcamp structure gives you goals, accountability, and the satisfaction of finishing a session distraction-free.
+            Think of it as a personal trainer for your screen time. The bootcamp structure gives you goals, accountability, and the satisfaction of earning your chill time.
           </p>
         </div>
-        <div class="about-stats reveal reveal-delay-2">
-          <div class="stat-card">
-            <div class="stat-num gold-text">⏱️</div>
-            <div class="stat-label">Session Scheduling</div>
+        <div class="phone-showcase reveal reveal-delay-2">
+          <div class="phone-frame">
+            <div class="phone-vol"></div>
+            <div class="phone-power"></div>
+            <div class="phone-screen">
+              <div class="phone-slides">
+                <img src="assets/phonediet-screen-1.jpg" alt="Phone Diet Bootcamp — step counter" />
+                <img src="assets/phonediet-screen-2.jpg" alt="Phone Diet Bootcamp — locked screen" />
+                <img src="assets/phonediet-screen-3.jpg" alt="Phone Diet Bootcamp — history & stats" />
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">📊</div>
-            <div class="stat-label">Progress Tracking</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">🔥</div>
-            <div class="stat-label">Streak Rewards</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">🧘</div>
-            <div class="stat-label">Real Breaks</div>
+          <div class="phone-dots">
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
           </div>
         </div>
       </div>
@@ -97,24 +131,24 @@
     <div class="container">
       <div class="products-header reveal">
         <span class="about-label">Key Features</span>
-        <h2>Take back <span class="gold-text">your time.</span></h2>
+        <h2>Earn back <span class="gold-text">your screen time.</span></h2>
       </div>
 
       <div class="features-grid">
         <div class="feature-card glass-card reveal">
-          <span class="feature-icon">⏱️</span>
-          <h4>Scheduled Lock Sessions</h4>
-          <p>Set time blocks where your phone is locked to non-essential apps. You stay in control of when and how long.</p>
+          <span class="feature-icon">👟</span>
+          <h4>Walk to Unlock</h4>
+          <p>Every 100 steps you take earns 1 minute of phone usage. The more you move throughout the day, the more screen time you unlock.</p>
         </div>
         <div class="feature-card glass-card reveal reveal-delay-1">
           <span class="feature-icon">📊</span>
-          <h4>Progress Tracking</h4>
-          <p>Visual dashboards show how many sessions you've completed, how much screen time you've reduced, and your improvement week over week.</p>
+          <h4>Live Balance Tracker</h4>
+          <p>See your earned minutes update in real-time. Track your daily step count, usage balance, and history all in one place.</p>
         </div>
         <div class="feature-card glass-card reveal reveal-delay-2">
           <span class="feature-icon">🔥</span>
           <h4>Streak Rewards</h4>
-          <p>Complete daily sessions and build streaks. Earn milestones and unlock motivational achievements to keep you on track.</p>
+          <p>Hit your daily step goals and build streaks. Earn badges and motivational milestones that keep you moving and accountable.</p>
         </div>
       </div>
     </div>
@@ -126,10 +160,10 @@
   <section class="app-cta reveal">
     <div class="container">
       <h2>Coming <span class="gold-text">soon.</span></h2>
-      <p>Phone Diet Bootcamp is in development. Ready to put your phone down? It's time.</p>
+      <p>Phone Diet Bootcamp is in development. Ready to earn your screen time? Start walking.</p>
       <div class="cta-actions">
-        <a href="index.html" class="btn btn-primary">← Back to Am3r Group</a>
-        <a href="linguits.html" class="btn btn-ghost">See Linguits →</a>
+        <a href="index.html" class="btn btn-primary"><span>← Back to Am<span class="brand-three">3</span>r Group</span></a>
+        <a href="linguist.html" class="btn btn-ghost">See Linguist →</a>
       </div>
     </div>
   </section>
@@ -142,13 +176,13 @@
         <ul class="footer-links">
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#products">Products</a></li>
-          <li><a href="linguits.html">Linguits</a></li>
+          <li><a href="linguist.html">Linguist</a></li>
           <li><a href="deliber8.html">Deliber8</a></li>
           <li><a href="phonediet.html">Phone Diet Bootcamp</a></li>
         </ul>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">© 2011–2026 Am3r Group. All rights reserved.</p>
+        <p class="footer-copy">© 2011–2026 Am<span class="brand-three">3</span>r Group. All rights reserved.</p>
         <p class="footer-copy" style="color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size:0.8rem;">Software that matters.</p>
       </div>
     </div>

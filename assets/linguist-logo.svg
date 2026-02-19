@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="200" height="200">
+  <defs>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f5b942;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#c87d0e;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="200" height="200" rx="36" fill="url(#goldGrad)" />
+
+  <!-- Black arrow → (top-right) -->
+  <g fill="#111111">
+    <!-- shaft -->
+    <rect x="72" y="78" width="72" height="22" />
+    <!-- arrowhead -->
+    <polygon points="144,66 172,89 144,112" />
+  </g>
+
+  <!-- White arrow ← (bottom-left) -->
+  <g fill="#ffffff">
+    <!-- shaft -->
+    <rect x="56" y="100" width="72" height="22" />
+    <!-- arrowhead -->
+    <polygon points="56,90 28,111 56,134" />
+  </g>
+</svg>

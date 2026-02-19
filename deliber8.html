@@ -13,6 +13,34 @@
     .app-hero::before {
       background: radial-gradient(circle, rgba(245,158,11,0.1) 0%, rgba(168,85,247,0.06) 50%, transparent 70%);
     }
+    .deliber8-logo {
+      width: 100px;
+      height: 100px;
+      border-radius: 22px;
+      margin: 0 auto 24px;
+      display: block;
+      object-fit: cover;
+      box-shadow: 0 0 40px rgba(245, 158, 11, 0.4);
+      animation: fadeInDown 0.6s ease 0.2s both;
+    }
+    /* Override phone-showcase for in-flow about-grid context */
+    .phone-showcase {
+      position: relative;
+      top: auto;
+      left: auto;
+      transform: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .phone-frame {
+      width: 240px;
+      height: 504px;
+    }
+    .phone-slides img {
+      object-fit: cover;
+      object-position: 50% 8%;
+    }
   </style>
 </head>
 <body>
@@ -27,7 +55,7 @@
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#about">About</a></li>
         <li><a href="index.html#products">Products</a></li>
-        <li><a href="linguits.html">Linguits</a></li>
+        <li><a href="linguist.html">Linguist</a></li>
         <li><a href="deliber8.html" style="color: var(--accent);">Deliber8</a></li>
         <li><a href="phonediet.html">Phone Diet</a></li>
         <li><a href="index.html#products" class="nav-cta">All Apps →</a></li>
@@ -38,16 +66,26 @@
   <!-- APP HERO -->
   <section class="app-hero">
     <div class="app-hero-content">
-      <span class="app-hero-icon">⚖️</span>
+      <img src="assets/deliber8-logo.png" alt="Deliber8 logo" class="deliber8-logo" />
       <div style="margin-bottom:16px;">
-        <span class="badge dev">● In Development</span>
+        <span class="badge beta">● Beta Testing</span>
       </div>
       <h1 class="gold-text">Deliber8</h1>
       <p class="app-hero-tagline">
         Where every argument finds its answer. Structured debate rooms for minds that like to be challenged.
       </p>
+      <div class="platform-badges" style="justify-content:center; margin-bottom:20px;">
+        <span class="platform-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85a.637.637 0 0 0-.83.22l-1.88 3.24a11.46 11.46 0 0 0-8.94 0L5.65 5.67a.643.643 0 0 0-.87-.2c-.28.18-.37.54-.19.83L6.4 9.48A10.78 10.78 0 0 0 1 18h22a10.78 10.78 0 0 0-5.4-8.52zM7 15.25a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5zm10 0a1.25 1.25 0 1 1 0-2.5 1.25 1.25 0 0 1 0 2.5z"/></svg>
+          Android
+        </span>
+        <span class="platform-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+          iOS
+        </span>
+      </div>
       <div class="app-hero-badge">
-        <span class="badge">By Am3r Group</span>
+        <span class="badge"><span>By Am<span class="brand-three">3</span>r Group</span></span>
       </div>
     </div>
   </section>
@@ -68,22 +106,22 @@
             Move beyond comment sections. Deliber8 creates a space where reasoning matters, evidence counts, and both sides get a fair say.
           </p>
         </div>
-        <div class="about-stats reveal reveal-delay-2">
-          <div class="stat-card">
-            <div class="stat-num gold-text">🏛️</div>
-            <div class="stat-label">Structured Rooms</div>
+        <div class="phone-showcase reveal reveal-delay-2">
+          <div class="phone-frame">
+            <div class="phone-vol"></div>
+            <div class="phone-power"></div>
+            <div class="phone-screen">
+              <div class="phone-slides">
+                <img src="assets/deliber8-screen-1.jpg" alt="Deliber8 app — debate room" />
+                <img src="assets/deliber8-screen-2.jpg" alt="Deliber8 app — argument view" />
+                <img src="assets/deliber8-screen-3.jpg" alt="Deliber8 app — scoring" />
+              </div>
+            </div>
           </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">🤖</div>
-            <div class="stat-label">AI Scoring</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">🌐</div>
-            <div class="stat-label">Public Debates</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-num gold-text">🔒</div>
-            <div class="stat-label">Private Rooms</div>
+          <div class="phone-dots">
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
+            <div class="phone-dot"></div>
           </div>
         </div>
       </div>
@@ -125,10 +163,10 @@
   <!-- CTA -->
   <section class="app-cta reveal">
     <div class="container">
-      <h2>Coming <span class="gold-text">soon.</span></h2>
-      <p>Deliber8 is currently in active development. Ready to debate? Watch this space.</p>
+      <h2>Now in <span class="gold-text">Beta.</span></h2>
+      <p>Deliber8 is currently in beta testing. Ready to debate? Join the conversation.</p>
       <div class="cta-actions">
-        <a href="index.html" class="btn btn-primary">← Back to Am3r Group</a>
+        <a href="index.html" class="btn btn-primary"><span>← Back to Am<span class="brand-three">3</span>r Group</span></a>
         <a href="phonediet.html" class="btn btn-ghost">See Phone Diet →</a>
       </div>
     </div>
@@ -142,13 +180,13 @@
         <ul class="footer-links">
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#products">Products</a></li>
-          <li><a href="linguits.html">Linguits</a></li>
+          <li><a href="linguist.html">Linguist</a></li>
           <li><a href="deliber8.html">Deliber8</a></li>
           <li><a href="phonediet.html">Phone Diet Bootcamp</a></li>
         </ul>
       </div>
       <div class="footer-bottom">
-        <p class="footer-copy">© 2011–2026 Am3r Group. All rights reserved.</p>
+        <p class="footer-copy">© 2011–2026 Am<span class="brand-three">3</span>r Group. All rights reserved.</p>
         <p class="footer-copy" style="color: var(--accent); font-family: 'Space Grotesk', sans-serif; font-size:0.8rem;">Software that matters.</p>
       </div>
     </div>

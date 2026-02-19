@@ -94,6 +94,14 @@ p { color: var(--muted); line-height: 1.75; }
   background-clip: text;
 }
 
+/* Lighter gold gradient for the "3" in Am3r branding */
+.brand-three {
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 45%, #fde68a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* ---------- Layout Utilities ---------- */
 .container {
   max-width: 1200px;
@@ -166,6 +174,48 @@ p { color: var(--muted); line-height: 1.75; }
   color: var(--accent);
 }
 
+/* Platform availability badges */
+.platform-badges {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.platform-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 11px;
+  border-radius: 20px;
+  background: #0c0c0c;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.platform-badge svg {
+  flex-shrink: 0;
+}
+
+.badge.beta {
+  border-color: rgba(168, 85, 247, 0.5);
+  color: #c084fc;
+}
+
+.badge.deploy {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+  border-color: transparent;
+  color: #0c0c0c;
+  font-weight: 700;
+  -webkit-text-fill-color: #0c0c0c;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -191,6 +241,20 @@ p { color: var(--muted); line-height: 1.75; }
 .btn-primary:hover {
   box-shadow: 0 6px 30px rgba(245, 158, 11, 0.55);
   transform: translateY(-2px);
+}
+
+/* "3" on gold button background must be white to stay visible */
+.btn-primary span span {
+  background: none !important;
+  -webkit-text-fill-color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+/* "3" inside badge must also be white */
+.badge .brand-three {
+  background: none;
+  -webkit-text-fill-color: #ffffff;
+  color: #ffffff;
 }
 
 .btn-ghost {
@@ -287,27 +351,44 @@ p { color: var(--muted); line-height: 1.75; }
 .nav-toggle {
   display: none;
   flex-direction: column;
+  justify-content: center;
   gap: 5px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 4px;
+  padding: 8px;
+  z-index: 101;
+  position: relative;
 }
 
 .nav-toggle span {
   display: block;
-  width: 24px;
+  width: 26px;
   height: 2px;
   background: var(--text);
   border-radius: 2px;
-  transition: var(--transition);
+  transform-origin: center;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.25s ease,
+              width 0.25s ease;
+}
+
+/* Hamburger → X morph */
+.nav-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.nav-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
 }
 
 /* ============================================
    HERO
    ============================================ */
 .hero {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -315,7 +396,7 @@ p { color: var(--muted); line-height: 1.75; }
   text-align: center;
   position: relative;
   overflow: hidden;
-  padding: calc(var(--nav-h) + 80px) 24px 100px;
+  padding: calc(var(--nav-h) + 48px) 24px 80px;
 }
 
 /* Ambient background glow */
@@ -349,8 +430,6 @@ p { color: var(--muted); line-height: 1.75; }
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--accent);
-  opacity: 0;
-  animation: fadeInDown 0.6s ease 0.2s forwards;
 }
 
 .hero-eyebrow::before,
@@ -364,22 +443,9 @@ p { color: var(--muted); line-height: 1.75; }
 }
 
 .hero-title {
-  margin-bottom: 28px;
-}
-
-/* Kinetic text — each letter wraps in a span */
-.hero-title .letter {
-  display: inline-block;
-  opacity: 0;
-  transform: translateY(60px) rotate(4deg);
-  animation: letterReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes letterReveal {
-  to {
-    opacity: 1;
-    transform: translateY(0) rotate(0deg);
-  }
+  font-size: clamp(2rem, 3.5vw, 3.2rem);
+  margin-bottom: 24px;
+  animation: fadeInUp 0.6s ease 0.15s both;
 }
 
 @keyframes fadeInDown {
@@ -397,8 +463,6 @@ p { color: var(--muted); line-height: 1.75; }
   color: var(--muted);
   max-width: 600px;
   margin: 0 auto 40px;
-  opacity: 0;
-  animation: fadeInUp 0.7s ease 1.4s forwards;
 }
 
 .hero-actions {
@@ -407,19 +471,15 @@ p { color: var(--muted); line-height: 1.75; }
   justify-content: center;
   gap: 16px;
   flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeInUp 0.7s ease 1.6s forwards;
 }
 
 .hero-founded {
-  margin-top: 80px;
+  margin-top: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 40px;
   flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeInUp 0.7s ease 1.8s forwards;
 }
 
 .hero-founded-stat {
@@ -584,14 +644,192 @@ p { color: var(--muted); line-height: 1.75; }
   opacity: 1;
 }
 
-/* Linguits — spans 2 rows on left */
+/* Linguist — spans 2 rows on left */
 .bento-card--linguits {
   grid-column: 1;
   grid-row: 1 / 3;
-  min-height: 480px;
+  min-height: 880px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+}
+
+/* ---------- PHONE MOCKUP SHOWCASE ---------- */
+.phone-showcase {
+  position: absolute;
+  top: 28px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.85)) drop-shadow(0 0 40px rgba(245,158,11,0.25));
+}
+
+/*
+ * iPhone 17 Pro Max style:
+ * — Flat titanium sides, tighter corner radius
+ * — Ultra-thin bezels
+ * — Prominent Dynamic Island pill
+ * — Action button + Vol+/Vol- on left, Power on right
+ * — Titanium frame ring via layered box-shadows
+ */
+.phone-frame {
+  width: 280px;
+  height: 590px;
+  /* Black Titanium body — dark matte glass look */
+  background: linear-gradient(175deg, #191919 0%, #0e0e0e 50%, #141414 100%);
+  /* Tighter radius = modern flat-sided iPhone feel */
+  border-radius: 44px;
+  /* Ultra-thin bezel: 11px top (for DI), 8px sides, 14px bottom */
+  padding: 11px 8px 14px;
+  position: relative;
+  /* Titanium frame: highlight → gap → band → outer shadow */
+  box-shadow:
+    0 0 0 1px #555555,          /* polished titanium highlight */
+    0 0 0 3px #1a1a1a,          /* shadow gap inside frame */
+    0 0 0 5.5px #404040,        /* titanium band */
+    0 0 0 7px #111111,          /* outer edge shadow */
+    0 40px 80px rgba(0,0,0,0.95),
+    0 0 50px rgba(245,158,11,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.04);
+}
+
+/* Dynamic Island — wide pill, very close to top */
+.phone-frame::before {
+  content: '';
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 88px;
+  height: 26px;
+  background: #000;
+  border-radius: 14px;
+  z-index: 3;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.05);
+}
+
+/* Action button — small pill, top-left side */
+.phone-vol::before {
+  content: '';
+  position: absolute;
+  top: -52px;
+  left: 0;
+  width: 4px;
+  height: 28px;
+  background: linear-gradient(180deg, #505050 0%, #333 100%);
+  border-radius: 2px 0 0 2px;
+}
+
+/* Volume Up */
+.phone-vol {
+  position: absolute;
+  left: -4px;
+  top: 140px;
+  width: 4px;
+  height: 40px;
+  background: linear-gradient(180deg, #505050 0%, #333 100%);
+  border-radius: 2px 0 0 2px;
+}
+
+/* Volume Down */
+.phone-vol::after {
+  content: '';
+  position: absolute;
+  top: 52px;
+  left: 0;
+  width: 4px;
+  height: 40px;
+  background: linear-gradient(180deg, #505050 0%, #333 100%);
+  border-radius: 2px 0 0 2px;
+}
+
+/* Power / Side button — right side, tall */
+.phone-power {
+  position: absolute;
+  right: -4px;
+  top: 160px;
+  width: 4px;
+  height: 80px;
+  background: linear-gradient(180deg, #505050 0%, #333 100%);
+  border-radius: 0 2px 2px 0;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  /* Inner radius = outer (44) minus padding (8-11) ≈ 33px */
+  border-radius: 33px;
+  overflow: hidden;
+  background: #000;
+  position: relative;
+}
+
+/* Sliding screenshots */
+.phone-slides {
+  display: flex;
+  width: 300%;
+  height: 100%;
+  animation: slideScreens 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+
+.phone-slides img {
+  width: 33.333%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  flex-shrink: 0;
+}
+
+@keyframes slideScreens {
+  0%, 26%  { transform: translateX(0); }
+  33%, 59% { transform: translateX(-33.333%); }
+  66%, 92% { transform: translateX(-66.666%); }
+  99%, 100%{ transform: translateX(0); }
+}
+
+/* Slide indicator dots */
+.phone-dots {
+  position: absolute;
+  bottom: -24px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+}
+
+.phone-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(245, 158, 11, 0.3);
+}
+
+/* Dot animations — synced to slideScreens (10s, same easing) */
+/* Slide 1: 0–26%  |  Slide 2: 33–59%  |  Slide 3: 66–92%  */
+@keyframes dot1Active {
+  0%,  26%              { background: var(--accent); }
+  30%, 95%              { background: rgba(245,158,11,0.3); }
+  99%, 100%             { background: var(--accent); }
+}
+@keyframes dot2Active {
+  0%,  30%              { background: rgba(245,158,11,0.3); }
+  33%, 59%              { background: var(--accent); }
+  63%, 100%             { background: rgba(245,158,11,0.3); }
+}
+@keyframes dot3Active {
+  0%,  63%              { background: rgba(245,158,11,0.3); }
+  66%, 92%              { background: var(--accent); }
+  96%, 100%             { background: rgba(245,158,11,0.3); }
+}
+
+.phone-dots .phone-dot:nth-child(1) {
+  animation: dot1Active 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+.phone-dots .phone-dot:nth-child(2) {
+  animation: dot2Active 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+}
+.phone-dots .phone-dot:nth-child(3) {
+  animation: dot3Active 10s cubic-bezier(0.77, 0, 0.175, 1) infinite;
 }
 
 .bento-card--deliber8 {
@@ -894,7 +1132,41 @@ p { color: var(--muted); line-height: 1.75; }
   .bento-card--linguits {
     grid-column: 1;
     grid-row: auto;
-    min-height: 360px;
+    min-height: 860px;
+  }
+
+  /* Scale phone down for mobile so it doesn't crush the content below */
+  .phone-frame {
+    width: 220px;
+    height: 462px;
+    border-radius: 48px;
+    padding: 19px 11px;
+  }
+
+  .phone-frame::before {
+    width: 55px;
+    height: 13px;
+    top: 10px;
+    border-radius: 7px;
+  }
+
+  .phone-screen {
+    border-radius: 35px;
+  }
+
+  .phone-vol {
+    top: 94px;
+    height: 35px;
+  }
+
+  .phone-vol::after {
+    top: 49px;
+    height: 35px;
+  }
+
+  .phone-power {
+    top: 124px;
+    height: 54px;
   }
 
   .bento-card--deliber8,
@@ -907,41 +1179,99 @@ p { color: var(--muted); line-height: 1.75; }
     grid-template-columns: 1fr;
   }
 
+  /* Full-screen overlay menu */
   .nav-links {
-    display: none;
-    position: absolute;
-    top: var(--nav-h);
-    left: 0;
-    right: 0;
+    display: flex;
+    position: fixed;
+    inset: 0;
     flex-direction: column;
-    gap: 0;
-    background: rgba(12, 12, 12, 0.96);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    padding: 16px 0;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: #080808;
+    border: none;
+    padding: 0;
+    z-index: 9998;
+    /* Hidden state */
+    opacity: 0;
+    pointer-events: none;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0.35s;
   }
 
   .nav-links.open {
-    display: flex;
+    opacity: 1;
+    pointer-events: all;
+    visibility: visible;
+    transform: translateY(0);
+    transition: opacity 0.35s ease, transform 0.35s ease, visibility 0s linear 0s;
   }
 
+  /* Staggered link entrance */
   .nav-links li {
-    width: 100%;
+    width: auto;
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
+
+  .nav-links.open li:nth-child(1) { opacity: 1; transform: translateY(0); transition-delay: 0.08s; }
+  .nav-links.open li:nth-child(2) { opacity: 1; transform: translateY(0); transition-delay: 0.13s; }
+  .nav-links.open li:nth-child(3) { opacity: 1; transform: translateY(0); transition-delay: 0.18s; }
+  .nav-links.open li:nth-child(4) { opacity: 1; transform: translateY(0); transition-delay: 0.23s; }
+  .nav-links.open li:nth-child(5) { opacity: 1; transform: translateY(0); transition-delay: 0.28s; }
+  .nav-links.open li:nth-child(6) { opacity: 1; transform: translateY(0); transition-delay: 0.33s; }
 
   .nav-links a {
     display: block;
-    padding: 14px 24px;
+    font-family: 'Space Grotesk', sans-serif !important;
+    font-size: clamp(1.8rem, 7vw, 2.8rem) !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.02em;
+    color: rgba(245, 245, 245, 0.75) !important;
+    padding: 10px 32px !important;
+    text-align: center;
+    transition: color 0.2s ease, transform 0.2s ease !important;
+  }
+
+  .nav-links a:hover {
+    color: var(--accent) !important;
+    transform: translateX(6px);
   }
 
   .nav-links .nav-cta {
-    margin: 8px 24px;
-    border-radius: var(--radius-sm);
-    padding: 12px 18px;
+    margin: 0 !important;
+    background: none !important;
+    border: none !important;
+    color: var(--accent) !important;
+    padding: 10px 32px !important;
+    border-radius: 0 !important;
+    font-size: clamp(1.8rem, 7vw, 2.8rem) !important;
+  }
+
+  .nav-links .nav-cta:hover {
+    background: none !important;
+  }
+
+  /* Decorative overlay line */
+  .nav-links::before {
+    content: 'Am3r';
+    position: absolute;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 30vw;
+    font-weight: 900;
+    color: rgba(245, 158, 11, 0.03);
+    pointer-events: none;
+    user-select: none;
+    letter-spacing: -0.04em;
+    line-height: 1;
   }
 
   .nav-toggle {
     display: flex;
+    z-index: 9999;
+    position: relative;
   }
 
   .about-stats {
@@ -966,5 +1296,187 @@ p { color: var(--muted); line-height: 1.75; }
   .footer-bottom {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+/* =====================================================
+   HERO CENTERED LAYOUT + PHONE SHOWCASE
+   ===================================================== */
+
+/* Hero inner wrapper — centered single column */
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-content {
+  max-width: 900px;
+  width: 100%;
+}
+
+/* ---- Phone showcase container ---- */
+.hero-phones {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  margin: 40px 0 48px;
+}
+
+.hero-phone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ---- Side phones (Linguist & Phone Diet) ---- */
+.hero-phone--left .phone-frame,
+.hero-phone--right .phone-frame {
+  width: 138px;
+  height: 290px;
+  border-radius: 22px;
+  padding: 5px 4px 7px;
+  box-shadow:
+    0 0 0 1px #555,
+    0 0 0 2px #1a1a1a,
+    0 0 0 3px #404040,
+    0 0 0 4.5px #111,
+    0 16px 40px rgba(0,0,0,0.9),
+    0 0 20px rgba(245,158,11,0.1);
+}
+
+/* Dynamic Island - side phones */
+.hero-phone--left .phone-frame::before,
+.hero-phone--right .phone-frame::before {
+  width: 43px;
+  height: 12px;
+  top: 3px;
+  border-radius: 7px;
+}
+
+.hero-phone--left .phone-screen,
+.hero-phone--right .phone-screen {
+  border-radius: 17px;
+}
+
+/* Buttons - side phones */
+.hero-phone--left .phone-vol,
+.hero-phone--right .phone-vol {
+  left: -3px;
+  top: 68px;
+  width: 3px;
+  height: 20px;
+}
+.hero-phone--left .phone-vol::before,
+.hero-phone--right .phone-vol::before {
+  top: -24px;
+  width: 3px;
+  height: 13px;
+}
+.hero-phone--left .phone-vol::after,
+.hero-phone--right .phone-vol::after {
+  top: 26px;
+  width: 3px;
+  height: 20px;
+}
+.hero-phone--left .phone-power,
+.hero-phone--right .phone-power {
+  right: -3px;
+  top: 78px;
+  width: 3px;
+  height: 38px;
+}
+
+/* Side phones: dimmed + offset for depth effect */
+.hero-phone--left,
+.hero-phone--right {
+  opacity: 0.6;
+  transform: translateY(28px);
+}
+
+/* ---- Center phone (Deliber8) ---- */
+.hero-phone--center .phone-frame {
+  width: 178px;
+  height: 374px;
+  border-radius: 28px;
+  padding: 8px 5px 9px;
+  box-shadow:
+    0 0 0 1px #555,
+    0 0 0 2px #1a1a1a,
+    0 0 0 3.5px #404040,
+    0 0 0 5px #111,
+    0 28px 64px rgba(0,0,0,0.95),
+    0 0 40px rgba(245,158,11,0.22);
+}
+
+.hero-phone--center .phone-frame::before {
+  width: 55px;
+  height: 16px;
+  top: 5px;
+  border-radius: 9px;
+}
+
+.hero-phone--center .phone-screen {
+  border-radius: 21px;
+}
+
+.hero-phone--center .phone-vol {
+  left: -3px;
+  top: 88px;
+  width: 3px;
+  height: 26px;
+}
+.hero-phone--center .phone-vol::before {
+  top: -30px;
+  width: 3px;
+  height: 17px;
+}
+.hero-phone--center .phone-vol::after {
+  top: 32px;
+  width: 3px;
+  height: 26px;
+}
+.hero-phone--center .phone-power {
+  right: -3px;
+  top: 100px;
+  width: 3px;
+  height: 50px;
+}
+
+/* App label beneath each phone */
+.hero-phone-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  opacity: 0.7;
+}
+
+/* Stagger each phone so they show different screenshots */
+.hero-slides-2 {
+  animation-delay: -3.33s;
+}
+.hero-slides-3 {
+  animation-delay: -6.66s;
+}
+
+/* ---- Hero phone responsive ---- */
+@media (max-width: 900px) {
+  /* Hide side phones on mobile to save space */
+  .hero-phone--left,
+  .hero-phone--right {
+    display: none;
+  }
+  .hero-phone--center {
+    opacity: 1;
+    transform: none;
   }
 }

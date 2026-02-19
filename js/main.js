@@ -20,47 +20,47 @@
   window.addEventListener('scroll', handleNavScroll, { passive: true });
   handleNavScroll(); // run on load
 
-  /* ---------- NAV: mobile toggle ---------- */
+  /* ---------- NAV: mobile full-screen overlay ---------- */
   const navToggle = document.getElementById('navToggle');
   const navLinks = document.getElementById('navLinks');
 
-  if (navToggle && navLinks) {
-    navToggle.addEventListener('click', function () {
-      const isOpen = navLinks.classList.toggle('open');
-      navToggle.setAttribute('aria-expanded', isOpen);
-    });
-
-    // Close menu when a link is clicked
-    navLinks.querySelectorAll('a').forEach(function (link) {
-      link.addEventListener('click', function () {
-        navLinks.classList.remove('open');
-      });
-    });
+  function closeMenu() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
-  /* ---------- KINETIC HERO TEXT ---------- */
-  const heroTitle = document.getElementById('heroTitle');
+  function openMenu() {
+    navLinks.classList.add('open');
+    navToggle.classList.add('open');
+    navToggle.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden'; // lock scroll
+  }
 
-  if (heroTitle) {
-    // Split text into words and letters, preserving <br> tags
-    const html = heroTitle.innerHTML;
-    const parts = html.split(/(<br\s*\/?>)/gi);
-    let letterIndex = 0;
-    const BASE_DELAY = 0.55; // seconds before first letter starts
-    const LETTER_DELAY = 0.03; // seconds between each letter
-
-    heroTitle.innerHTML = parts.map(function (part) {
-      if (/^<br/i.test(part)) {
-        return part; // keep <br> as-is
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', function () {
+      if (navLinks.classList.contains('open')) {
+        closeMenu();
+      } else {
+        openMenu();
       }
-      // Wrap each non-space character in a span
-      return part.split('').map(function (char) {
-        if (char === ' ') return ' ';
-        const delay = BASE_DELAY + letterIndex * LETTER_DELAY;
-        letterIndex++;
-        return '<span class="letter" style="animation-delay:' + delay.toFixed(3) + 's">' + char + '</span>';
-      }).join('');
-    }).join('');
+    });
+
+    // Close on link click
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', closeMenu);
+    });
+
+    // Close when tapping the overlay background (not on a link)
+    navLinks.addEventListener('click', function (e) {
+      if (e.target === navLinks) closeMenu();
+    });
+
+    // Close on Escape key
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeMenu();
+    });
   }
 
   /* ---------- SCROLL REVEAL (IntersectionObserver) ---------- */
