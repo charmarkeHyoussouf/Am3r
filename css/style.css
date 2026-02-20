@@ -204,8 +204,11 @@ p { color: var(--muted); line-height: 1.75; }
 }
 
 .badge.beta {
-  border-color: rgba(168, 85, 247, 0.5);
-  color: #c084fc;
+  background: #42f2fc;
+  border-color: transparent;
+  color: #000;
+  font-weight: 700;
+  -webkit-text-fill-color: #000;
 }
 
 .badge.deploy {
@@ -661,7 +664,8 @@ p { color: var(--muted); line-height: 1.75; }
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
-  filter: drop-shadow(0 40px 80px rgba(0,0,0,0.85)) drop-shadow(0 0 40px rgba(245,158,11,0.25));
+  /* filter removed — drop-shadow on a container forces offscreen rasterization,
+     degrading image quality. The phone-frame box-shadow provides equivalent depth. */
 }
 
 /*
