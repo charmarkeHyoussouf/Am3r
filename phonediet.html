@@ -54,10 +54,15 @@
       </button>
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#products">Products</a></li>
-        <li><a href="linguist.html">Linguist</a></li>
-        <li><a href="deliber8.html">Deliber8</a></li>
-        <li><a href="phonediet.html" style="color: var(--accent);">Phone Diet</a></li>
+        <li class="has-submenu">
+          <a href="index.html#products" class="nav-products-toggle">Products <span class="nav-arrow">▾</span></a>
+          <ul class="nav-submenu">
+            <li><a href="linguist.html">Linguist</a></li>
+            <li><a href="deliber8.html">Deliber8</a></li>
+            <li><a href="phonediet.html" style="color: var(--accent);">Phone Diet</a></li>
+          </ul>
+        </li>
+        <li><a href="#contact">Contact</a></li>
         <li><a href="index.html#products" class="nav-cta">All Apps →</a></li>
       </ul>
     </div>
@@ -186,16 +191,14 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer" id="contact">
     <div class="container">
       <div class="footer-inner">
         <div class="footer-logo">Am<span>3</span>r Group</div>
         <ul class="footer-links">
           <li><a href="index.html#about">About</a></li>
           <li><a href="index.html#products">Products</a></li>
-          <li><a href="linguist.html">Linguist</a></li>
-          <li><a href="deliber8.html">Deliber8</a></li>
-          <li><a href="phonediet.html">Phone Diet Bootcamp</a></li>
+          <li><a href="mailto:main@am3rgroup.com" class="contact-link">main@am<span class="brand-three">3</span>rgroup.com</a></li>
         </ul>
       </div>
       <div class="footer-bottom">

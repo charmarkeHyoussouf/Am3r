@@ -30,6 +30,9 @@
     nav.classList.remove('menu-open');
     navToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    // Close any open submenus
+    var openSubs = document.querySelectorAll('.has-submenu.open');
+    openSubs.forEach(function (el) { el.classList.remove('open'); });
   }
 
   function openMenu() {
@@ -49,8 +52,9 @@
       }
     });
 
-    // Close on link click
+    // Close on link click (skip Products toggle — it only opens submenu)
     navLinks.querySelectorAll('a').forEach(function (link) {
+      if (link.classList.contains('nav-products-toggle')) return;
       link.addEventListener('click', closeMenu);
     });
 
@@ -62,6 +66,23 @@
     // Close on Escape key
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeMenu();
+    });
+  }
+
+  /* ---------- NAV: Products submenu toggle (mobile only) ---------- */
+  var productsToggle = document.querySelector('.nav-products-toggle');
+  if (productsToggle) {
+    productsToggle.addEventListener('click', function (e) {
+      e.preventDefault();
+      this.parentElement.classList.toggle('open');
+    });
+
+    // Desktop: close submenu when clicking outside
+    document.addEventListener('click', function (e) {
+      var submenu = document.querySelector('.has-submenu');
+      if (submenu && submenu.classList.contains('open') && !submenu.contains(e.target)) {
+        submenu.classList.remove('open');
+      }
     });
   }
 
@@ -94,6 +115,8 @@
   /* ---------- SMOOTH ANCHOR SCROLL ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
     anchor.addEventListener('click', function (e) {
+      // Skip Products toggle — it only opens the submenu, not scrolls
+      if (this.classList.contains('nav-products-toggle')) return;
       const targetId = this.getAttribute('href').slice(1);
       const target = document.getElementById(targetId);
       if (target) {
