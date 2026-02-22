@@ -103,4 +103,17 @@
     });
   });
 
+  /* ---------- COPY EMAIL BUTTONS ---------- */
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var email = this.getAttribute('data-email');
+      navigator.clipboard.writeText(email).then(function () {
+        btn.classList.add('copied');
+        setTimeout(function () {
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    });
+  });
+
 })();

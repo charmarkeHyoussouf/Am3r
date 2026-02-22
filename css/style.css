@@ -1110,6 +1110,83 @@ p { color: var(--muted); line-height: 1.75; }
   flex-wrap: wrap;
 }
 
+.contact-emails {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+  margin-bottom: 4px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 6px 16px;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 8px;
+  transition: var(--transition);
+  cursor: pointer;
+  user-select: all;
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+.copy-btn {
+  background: none;
+  border: 1px solid rgba(245, 158, 11, 0.2);
+  border-radius: 6px;
+  padding: 6px;
+  cursor: pointer;
+  color: var(--muted);
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.copy-btn .check-icon {
+  display: none;
+}
+
+.copy-btn.copied .copy-icon {
+  display: none;
+}
+
+.copy-btn.copied .check-icon {
+  display: block;
+  color: #22c55e;
+}
+
+.copy-btn.copied {
+  border-color: #22c55e;
+}
+
 /* ============================================
    SECTION DIVIDER
    ============================================ */
