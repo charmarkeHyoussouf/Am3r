@@ -1136,7 +1136,12 @@ p { color: var(--muted); line-height: 1.75; }
   .bento-card--linguits {
     grid-column: 1;
     grid-row: auto;
-    min-height: 640px;
+    min-height: auto;
+    justify-content: flex-start;
+  }
+
+  .bento-card--linguits .phone-showcase {
+    display: none;
   }
 
   /* Scale phone down for mobile so it doesn't crush the content below */
@@ -1285,7 +1290,16 @@ p { color: var(--muted); line-height: 1.75; }
 
 @media (max-width: 600px) {
   .hero-founded {
-    gap: 24px;
+    gap: 16px;
+    flex-wrap: nowrap;
+  }
+
+  .hero-founded-stat .num {
+    font-size: 1.4rem;
+  }
+
+  .hero-founded-stat .label {
+    font-size: 0.6rem;
   }
 
   .hero-founded-divider {
@@ -1474,28 +1488,28 @@ p { color: var(--muted); line-height: 1.75; }
 
 /* ---- Hero phone responsive ---- */
 @media (max-width: 900px) {
-  /* Hide side phones on mobile to save space */
-  .hero-phone--left,
+  /* Mobile: show only Linguist phone, hide Deliber8 & Phone Diet */
+  .hero-phone--center,
   .hero-phone--right {
     display: none;
   }
-  .hero-phone--center {
+  .hero-phone--left {
     opacity: 1;
     transform: none;
   }
-  .hero-phone--center .phone-frame {
+  .hero-phone--left .phone-frame {
     width: 160px;
     height: 336px;
     border-radius: 26px;
     padding: 7px 5px 8px;
   }
-  .hero-phone--center .phone-frame::before {
+  .hero-phone--left .phone-frame::before {
     width: 44px;
     height: 11px;
     top: 4px;
     border-radius: 6px;
   }
-  .hero-phone--center .phone-screen {
+  .hero-phone--left .phone-screen {
     border-radius: 20px;
   }
   .hero-phones {
