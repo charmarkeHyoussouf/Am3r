@@ -295,6 +295,14 @@ p { color: var(--muted); line-height: 1.75; }
   border-bottom-color: var(--border);
 }
 
+/* Remove backdrop-filter when menu is open so it doesn't create a
+   stacking context that traps the full-screen overlay inside z-index:100 */
+.nav.menu-open.scrolled {
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition: none;
+}
+
 .nav-inner {
   display: flex;
   align-items: center;

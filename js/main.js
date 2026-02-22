@@ -27,6 +27,7 @@
   function closeMenu() {
     navLinks.classList.remove('open');
     navToggle.classList.remove('open');
+    nav.classList.remove('menu-open');
     navToggle.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
   }
@@ -34,6 +35,7 @@
   function openMenu() {
     navLinks.classList.add('open');
     navToggle.classList.add('open');
+    nav.classList.add('menu-open');
     navToggle.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden'; // lock scroll
   }
