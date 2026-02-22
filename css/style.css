@@ -1111,21 +1111,22 @@ p { color: var(--muted); line-height: 1.75; }
 }
 
 .contact-emails {
-  margin-top: 40px;
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
 }
 
-.contact-label {
+.contact-emails .contact-label {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted-2);
-  margin-bottom: 4px;
+  margin: 0;
+  line-height: 1;
 }
 
 .contact-row {
@@ -1137,7 +1138,7 @@ p { color: var(--muted); line-height: 1.75; }
 .contact-link {
   font-family: 'Space Grotesk', sans-serif;
   font-size: 0.9rem;
-  color: var(--accent);
+  color: #ffffff;
   text-decoration: none;
   padding: 6px 16px;
   border: 1px solid rgba(245, 158, 11, 0.2);
@@ -1150,6 +1151,13 @@ p { color: var(--muted); line-height: 1.75; }
 .contact-link:hover {
   border-color: var(--accent);
   background: rgba(245, 158, 11, 0.08);
+}
+
+.contact-link .brand-three {
+  background: linear-gradient(135deg, #fef3c7 0%, #fbbf24 45%, #fde68a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .copy-btn {
