@@ -1757,3 +1757,317 @@ p { color: var(--muted); line-height: 1.75; }
     margin: 24px 0 32px;
   }
 }
+
+/* ============================================
+   WAITLIST FORM
+   ============================================ */
+
+.waitlist-form {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.waitlist-form-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.waitlist-input-group {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  max-width: 400px;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  backdrop-filter: blur(8px);
+  transition: border-color var(--transition);
+}
+
+.waitlist-input-group:focus-within {
+  border-color: var(--border-hover);
+}
+
+.waitlist-input-group input[type="email"] {
+  flex: 1;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+}
+
+.waitlist-input-group input[type="email"]::placeholder {
+  color: var(--muted-2);
+}
+
+.waitlist-input-group button {
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border: none;
+  color: #0c0c0c;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.waitlist-input-group button:hover {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+}
+
+.waitlist-input-group button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.waitlist-status {
+  font-size: 0.85rem;
+  min-height: 20px;
+  transition: all 0.3s ease;
+}
+
+.waitlist-status-success {
+  color: #22c55e;
+}
+
+.waitlist-status-error {
+  color: #ef4444;
+}
+
+@media (max-width: 480px) {
+  .waitlist-input-group {
+    flex-direction: column;
+    border-radius: var(--radius-sm);
+  }
+  .waitlist-input-group button {
+    border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  }
+}
+
+/* ============================================
+   SLIDER CAPTCHA
+   ============================================ */
+
+.captcha-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0s linear 0.3s;
+}
+
+.captcha-backdrop.captcha-visible {
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.3s ease, visibility 0s linear 0s;
+}
+
+.captcha-modal {
+  background: #141414;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  max-width: 360px;
+  width: 100%;
+  padding: 20px;
+  position: relative;
+  transform: translateY(20px) scale(0.95);
+  transition: transform 0.3s ease;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+.captcha-visible .captcha-modal {
+  transform: translateY(0) scale(1);
+}
+
+.captcha-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.captcha-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.captcha-close {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.captcha-close:hover {
+  color: var(--text);
+}
+
+.captcha-canvas-wrap {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.captcha-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.captcha-piece {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+  transition: none;
+}
+
+/* Success animation */
+.captcha-success {
+  animation: captchaFlashGreen 0.6s ease;
+}
+
+@keyframes captchaFlashGreen {
+  0% { box-shadow: inset 0 0 0 0 rgba(34, 197, 94, 0); }
+  40% { box-shadow: inset 0 0 40px 10px rgba(34, 197, 94, 0.3); }
+  100% { box-shadow: inset 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Fail animation */
+.captcha-fail {
+  animation: captchaShake 0.5s ease;
+}
+
+@keyframes captchaShake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-8px); }
+  30% { transform: translateX(8px); }
+  45% { transform: translateX(-6px); }
+  60% { transform: translateX(6px); }
+  75% { transform: translateX(-3px); }
+  90% { transform: translateX(3px); }
+}
+
+.captcha-instruction {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.8rem;
+  margin: 12px 0;
+}
+
+/* Slider track */
+.captcha-slider-wrap {
+  padding: 0 4px;
+}
+
+.captcha-slider-track {
+  position: relative;
+  height: 44px;
+  background: var(--surface);
+  border-radius: 22px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.captcha-slider-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), rgba(245, 158, 11, 0.2));
+  border-radius: 22px;
+  transition: none;
+}
+
+.captcha-slider-handle {
+  position: absolute;
+  top: 2px;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  border-radius: 50%;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0c0c0c;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+  transition: box-shadow 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: none;
+}
+
+.captcha-slider-handle:active,
+.captcha-slider-handle.active {
+  cursor: grabbing;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.5);
+}
+
+.captcha-status {
+  text-align: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  min-height: 24px;
+  margin-top: 8px;
+}
+
+.captcha-status-success {
+  color: #22c55e;
+}
+
+.captcha-status-fail {
+  color: #ef4444;
+}
+
+/* RTL support */
+[dir="rtl"] .captcha-slider-handle svg {
+  transform: rotate(180deg);
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+  .captcha-modal {
+    padding: 16px;
+  }
+  .captcha-canvas-wrap {
+    width: 280px;
+    height: 175px;
+  }
+}
